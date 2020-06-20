@@ -25,9 +25,9 @@ class Location {
           .placemarkFromCoordinates(position.latitude, position.longitude);
 
       zipCode = p[0].postalCode;
-      return zipCode;
     } catch (e) {
       print(e);
     }
+    return zipCode;
   }
 }
