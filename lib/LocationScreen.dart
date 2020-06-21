@@ -43,12 +43,19 @@ class _LocationScreenState extends State<LocationScreen> {
         cityName = '';
         return;
       }
-      double temp = weatherData['main']['temp'];
+      var temp = weatherData['main']['temp'];
       temperature = temp.toInt();
       var condition = weatherData['weather'][0]['id'];
       weatherIcon = weather.getWeatherIcon(condition);
       weatherMessage = weather.getMessage(temperature);
       cityName = weatherData['name'];
+    });
+  }
+
+  void updateBackGround(String zipC) async {
+    setState(() {
+      print(zipC);
+      zip = zipC.substring(0, 2);
     });
   }
 
@@ -96,7 +103,12 @@ class _LocationScreenState extends State<LocationScreen> {
                       if (typedName != null) {
                         var weatherData =
                             await weather.getCityWeather(typedName);
+                        var lon = weatherData['coord']['lon'];
+                        var lat = weatherData['coord']['lat'];
+                        var zipC =
+                            await weather.getLocationZipCodeForCity(lon, lat);
                         updateUI(weatherData);
+                        updateBackGround(zipC);
                       }
                     },
                     child: Icon(

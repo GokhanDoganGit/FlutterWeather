@@ -30,4 +30,14 @@ class Location {
     }
     return zipCode;
   }
+
+  Future<String> getAddressFromLatLngForCity(double lon, double lat) async {
+    try {
+      List<Placemark> p = await Geolocator().placemarkFromCoordinates(lat, lon);
+      zipCode = p[0].postalCode;
+    } catch (e) {
+      print(e);
+    }
+    return zipCode;
+  }
 }

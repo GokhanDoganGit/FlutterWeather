@@ -30,6 +30,13 @@ class WeatherModel {
     return zipCode;
   }
 
+  Future<dynamic> getLocationZipCodeForCity(double lon, double lat) async {
+    Location location = Location();
+    var zipCode = await location.getAddressFromLatLngForCity(lon, lat);
+    //zipCode = zipCode.substring(0, 2);
+    return zipCode;
+  }
+
   String getWeatherIcon(int condition) {
     if (condition < 300) {
       return '🌩';

@@ -21,7 +21,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
     //print(weatherData);
     var zipCode = await weatherModel.getLocationZipCode();
     zipCode = zipCode.toString().substring(0, 2);
-    print(zipCode);
 
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return LocationScreen(
