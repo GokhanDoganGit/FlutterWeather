@@ -84,6 +84,11 @@ class _LocationScreenState extends State<LocationScreen> {
                     onPressed: () async {
                       var weatherData = await weather.getLocationWeather();
                       updateUI(weatherData);
+                      var lon = weatherData['coord']['lon'];
+                      var lat = weatherData['coord']['lat'];
+                      var zipC =
+                          await weather.getLocationZipCodeForCity(lon, lat);
+                      updateBackGround(zipC);
                     },
                     child: Icon(
                       Icons.near_me,
